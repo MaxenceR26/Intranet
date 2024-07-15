@@ -182,15 +182,16 @@ $mysqli->close();
     <!-- Navbar -->
     <div class="containers-link-page">
       <h1>Ajouter des liens en favoris</h1>
+      <p>Ajouter un lien internet afin de l'avoir en accès rapide; Exemple : https://google.fr</p>
       <form action="../php/Sample/addlink.php" method="post">
         <div class="box-link-page">
             
-            <input type="text" name="linkOne" placeholder="Lien numéro 1">
-            <input type="text" name="linkTwo" placeholder="Lien numéro 2">
-            <input type="text" name="linkThree" placeholder="Lien numéro 3">
-            <input type="text" name="linkFour" placeholder="Lien numéro 4">
-            <input type="text" name="linkFive" placeholder="Lien numéro 5">
-            <input type="text" name="linkSix" placeholder="Lien numéro 6">
+            <input type="text" name="linkOne" placeholder="Lien web">
+            <input type="text" name="linkTwo" placeholder="Lien web">
+            <input type="text" name="linkThree" placeholder="Lien web">
+            <input type="text" name="linkFour" placeholder="Lien web">
+            <input type="text" name="linkFive" placeholder="Lien web">
+            <input type="text" name="linkSix" placeholder="Lien web">
             
         </div>
         <input type="submit" value="Valider">
