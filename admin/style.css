@@ -1,0 +1,118 @@
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 50px;
+}
+
+tbody td {
+    border: 1px solid #ddd;
+    padding: 8px;
+    text-align: left;
+    opacity: 0;
+    transform: translateY(10px);
+    transition: opacity 0.8s ease, transform 0.8s ease;
+}
+
+tbody tr:nth-child(even) {
+    background-color: #f9f9f9;
+}
+
+tbody tr:hover {
+    background-color: #eaeaea;
+}
+
+.iconButton {
+    cursor: pointer;
+    &:hover {
+        color: gray;
+        transition: 0.2s;
+    }
+}
+
+.box {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 30px;
+}
+
+/* CSS pour masquer la fenêtre modale initialement */
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 1;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    background-color: rgba(0,0,0,0.4);
+}
+
+.modal-content {
+    background-color: #fefefe;
+    margin: 15% auto;
+    padding: 20px;
+    border: 1px solid #888;
+    width: 350px;
+    height: 50%;
+    color: #0075a6;
+    
+
+}
+
+.elementModal {
+    text-align: center; /* Centrer le texte horizontalement */
+    display: flex; /* Pour centrer verticalement */
+    justify-content: center; /* Pour centrer horizontalement */
+    align-items: center; /* Pour centrer verticalement */
+    flex-direction: column;
+    height: 100%;
+}
+
+.elementModal input {
+    width: 150px;
+    height: 25px;
+    border: 1px solid rgb(209, 209, 209);
+    margin: 5px;
+
+    &:focus {
+        outline: 1px solid rgb(209, 209, 209);
+    }
+}
+
+#roleForm {
+    display: flex;
+    flex-direction: column;  
+}
+
+#roleForm button[type="submit"] {
+    margin-top: 10px;
+    color: #f9f9f9;
+    background-color: #0075a6;
+    padding: 10px;
+    border: none;
+    border-radius: 50px;
+    cursor: pointer;
+
+    &:hover {
+        background-color: #0082ba;
+        transition: 0.6s ease-in-out;
+    }
+}
+
+
+.close {
+    color: #aaa;
+    float: right;
+    font-size: 20px;
+    font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+    color: black;
+    text-decoration: none;
+    cursor: pointer;
+}
