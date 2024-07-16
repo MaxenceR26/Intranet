@@ -124,7 +124,7 @@ $mysqli->close();
                         <a class="dropdown-item" href="#" style="color:#979797"><?php echo '<span style="font-weight:bold; color:#464646">></span> '.htmlspecialchars($msg); ?></a>
                     </li>
                 <?php endforeach; ?>
-                <a href="#" class="d-flex justify-content-center" id="allIsRead">Tous lu</a>
+                <a href="#" class="d-flex justify-content-center" onclick="allIsRead('../')">Tous lu</a>
             <?php else: ?>
                 <li><a class="dropdown-item" href="#">Vous n'avez pas de notifications</a></li>
             <?php endif; ?>
@@ -170,7 +170,7 @@ $mysqli->close();
                 ?>
                 
                 <li>
-                <a class="dropdown-item" onclick="deconnexion()" href="">Déconnexion</a>
+                <a class="dropdown-item" onclick="deconnexion('../')" href="">Déconnexion</a>
                 </li>
             </ul>
             </div>
@@ -198,20 +198,8 @@ $mysqli->close();
       </form>
         
     </div>
-    
+    <script src="../js/nav.js"></script>
+    <script src="../js/deconnexion.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/7.3.1/mdb.umd.min.js"></script>
 </body>
-<script src="../js/nav.js"></script>
-<script
-  type="text/javascript"
-  src="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/7.3.1/mdb.umd.min.js"
-></script>
-<script>
-    function deconnexion() {
-        var xhr = new XMLHttpRequest();
-        xhr.open('GET', '../php/Sample/core/deconnexion.php', true);
-        xhr.send();
-
-        window.location.href = '../index.html';
-    }
-</script>
 </html>

@@ -92,7 +92,7 @@ $stmt->close();
                         <a class="dropdown-item" href="#" style="color:#979797"><?php echo '<span style="font-weight:bold; color:#464646">></span> '.htmlspecialchars($msg); ?></a>
                     </li>
                 <?php endforeach; ?>
-                <a href="#" class="d-flex justify-content-center" id="allIsRead">Tous lu</a>
+                <a href="#" class="d-flex justify-content-center" onclick="allIsRead('../')">Tous lu</a>
             <?php else: ?>
                 <li><a class="dropdown-item" href="#">Vous n'avez pas de notifications</a></li>
             <?php endif; ?>
@@ -122,7 +122,7 @@ $stmt->close();
                         ?>
                         
                         <li>
-                        <a class="dropdown-item" onclick="deconnexion()" href="">Déconnexion</a>
+                        <a class="dropdown-item" onclick="deconnexion('../')" href="">Déconnexion</a>
                         </li>
                     </ul>
                 </div>
@@ -145,42 +145,10 @@ $stmt->close();
             <a href='#' id="send-newtickets-page" required style='padding:10px; color: gray; border: 1px solid gray; font-weight:600;'>Envoyer</a>
         </div>
     </div>
+    <script src="../js/nav.js"></script>
+    <script src="../js/deconnexion.js"></script>
+    <script src="../js/tickets.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/7.3.1/mdb.umd.min.js"></script>
+    <script src="../js/notifications.js"></script>
 </body>
-<script src="../js/nav.js"></script>
-<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/7.3.1/mdb.umd.min.js"></script>
-<script src="../js/notifications.js"></script>
-<script>
-    let color = "";
-    function setColor(button, newColor) {
-        var buttons = document.querySelectorAll('.me-3');
-        buttons.forEach(function(btn) {
-            btn.classList.remove('yellow', 'orange', 'red');
-        });
-        button.classList.add(newColor);
-        color = newColor;
-    }
-
-    document.getElementById('send-newtickets-page').addEventListener('click', function() {
-        var obj = document.getElementById('objet-newtickets-page').value;
-        var np = document.getElementById('nomPrenom-newtickets-page').value;
-        var exp = document.getElementById('exp-newtickets-page').value;
-        $.post('../php/Sample/newTicketsClients.php', { objet: obj, np: np, explication: exp, color: color }, function(response) {
-            if (response == 'Ticket fait') {
-                launch_toast();
-                setTimeout(() => {
-                    window.location.href = "../intranet.php";
-                }, 2300);
-            } else {
-                alert("Une erreur est survenue. Veuillez contacter le service informatique.");
-            }
-        });
-    });
-
-    function deconnexion() {
-        var xhr = new XMLHttpRequest();
-        xhr.open('GET', '../php/Sample/core/deconnexion.php', true);
-        xhr.send();
-        window.location.href = '../index.html';
-    }
-</script>
 </html>

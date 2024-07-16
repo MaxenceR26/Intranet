@@ -43,30 +43,15 @@ $stmt->close();
     <link rel="stylesheet" href="CSS/styles.css">
     <script src="https://kit.fontawesome.com/11b0336c50.js" crossorigin="anonymous"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-    <!-- Font Awesome -->
-    <link
-    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
-    rel="stylesheet"
-    />
-    <!-- Google Fonts -->
-    <link
-    href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap"
-    rel="stylesheet"
-    />
-    <!-- MDB -->
-    <link
-    href="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/7.3.1/mdb.min.css"
-    rel="stylesheet"
-    />
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet"/>
+    <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap" rel="stylesheet"/>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/7.3.1/mdb.min.css" rel="stylesheet"/>
     <title>Intranet Osartis</title>
     <link rel="icon" href="images/1719307876_logo.ico"/>
 </head>
 <body>
-    <!-- Navbar -->
     <nav class="navbar navbar-expand-lg navbar-light bg-body-tertiary">
-        <!-- Container wrapper -->
         <div class="container-fluid">
-        <!-- Toggle button -->
         <button
             data-mdb-collapse-init
             class="navbar-toggler"
@@ -78,10 +63,7 @@ $stmt->close();
         >
             <i class="fas fa-bars"></i>
         </button>
-    
-        <!-- Collapsible wrapper -->
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
-            <!-- Navbar brand -->
             <a class="navbar-brand mt-2 mt-lg-0" href="#" style="user-select: none; pointer-events: none;">
             <img
                 src="images/logo.jpg"
@@ -91,18 +73,13 @@ $stmt->close();
                 
             />
             </a>
-            <!-- Left links -->
             <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                 <div class="nav-item">
                     <a class="nav-link" href="">Osartis Intranet</a>
                 </div>
             
             </ul>
-            <!-- Left links -->
         </div>
-        <!-- Collapsible wrapper -->
-    
-        <!-- Right elements -->
         <div class="d-flex align-items-center">
             <div class="box-search-intranet-page">
                 <form action="php/Sample/search.php" method="GET">
@@ -110,7 +87,6 @@ $stmt->close();
                     <button type="submit"><i class='fa-solid fa-magnifying-glass'></i></button>
                 </form>
             </div>
-            <!-- Notifications -->
             <div class="dropdown">
             <a
                 data-mdb-dropdown-init
@@ -137,13 +113,12 @@ $stmt->close();
                         <a class="dropdown-item" href="#" style="color:#979797"><?php echo '<span style="font-weight:bold; color:#464646">></span> '.htmlspecialchars($msg); ?></a>
                     </li>
                 <?php endforeach; ?>
-                <a href="#" class="d-flex justify-content-center" id="allIsRead">Tous lu</a>
+                <a href="#" class="d-flex justify-content-center" onclick="allIsRead('')">Tous lu</a>
             <?php else: ?>
                 <li><a class="dropdown-item" href="#">Vous n'avez pas de notifications</a></li>
             <?php endif; ?>
             </ul>
             </div>
-            <!-- Avatar -->
             <div class="dropdown">
             <a
                 data-mdb-dropdown-init
@@ -182,16 +157,13 @@ $stmt->close();
                 ?>
                 
                 <li>
-                <a class="dropdown-item" onclick="deconnexion()" href="">Déconnexion</a>
+                <a class="dropdown-item" onclick="deconnexion('')" href="">Déconnexion</a>
                 </li>
             </ul>
             </div>
         </div>
-        <!-- Right elements -->
         </div>
-        <!-- Container wrapper -->
     </nav>
-    <!-- Navbar -->
     <?php
         if ($_SESSION['update-state'] == 0) {
             echo '<div class="update-state-intranet-page" style="background-color: red;">
@@ -315,7 +287,6 @@ $stmt->close();
                 $result = $mysqli->query($sql);
 
                 if ($result->num_rows > 0) {
-                    // Boucle sur les résultats
                     while ($row = $result->fetch_assoc()) {
                         echo "<div class='image-container-intranet-page'>
                                 <img src='{$row['link']}' alt='Image Description' loading='lazy'>
@@ -332,7 +303,6 @@ $stmt->close();
                             </div>";
                     }
                 } else {}
-                // Fermer la connexion MySQL
                 $mysqli->close();
                 ?>
                 <input type='file' name='file' id='file' class="file-intranet-page">
@@ -340,7 +310,6 @@ $stmt->close();
         </div>
     </div>
 
-    <!-- Popup HTML -->
     <div id='popup-intranet-page' class='popup-intranet-page'>
         <div class='popup-content-intranet-page'>
             <span class='close-intranet-page'>&times;</span>
@@ -351,90 +320,13 @@ $stmt->close();
             <button id='saveChanges-intranet-page' class="mt-5">Ajouter</button>
         </div>
     </div>
-
     
-    
-
+    <script src="js/deconnexion.js"></script>
+    <script src="js/nav.js"></script>
+    <script src="js/slider.js"></script>
+    <script src="js/galerie.js"></script>
+    <script src="js/updateNotifications.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/7.3.1/mdb.umd.min.js"></script>
     
 </body>
-<script src="js/nav.js"></script>
-<script
-  type="text/javascript"
-  src="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/7.3.1/mdb.umd.min.js"
-></script>
-<script src="JS/slider.js"></script>
-
-<script>
-document.addEventListener('DOMContentLoaded', function () {
-    var popups = document.querySelectorAll('.deleteImage');
-    var popup = document.getElementById('popup-intranet-page');
-    var span = document.getElementsByClassName('close-intranet-page')[0];
-    var textarea = document.getElementById('editPhrase-intranet-page');
-    var imageInput = document.getElementById('editImage-intranet-page');
-    var saveButton = document.getElementById('saveChanges-intranet-page');
-    var currentPhraseIndex = null;
-    var fileinputbutton = document.getElementById('fileButton-intranet-page')
-
-    fileinputbutton.addEventListener('click', function() {
-        popup.style.display = 'block';
-    })
-
-    popups.forEach(function(button) {
-        button.addEventListener('click', function() {
-            link = button.getAttribute('data-index');
-            $.post('php/Sample/removeGalerie.php', { link: link }, function(response) {
-                window.location.reload();
-            });
-        });
-    });
-
-    span.onclick = function () {
-        popup.style.display = 'none';
-    }
-
-    window.onclick = function (event) {
-        if (event.target == popup) {
-            popup.style.display = 'none';
-        }
-    }
-
-    saveButton.addEventListener('click', function() {
-        if (currentPhraseIndex !== null) {
-            var updatedPhrase = textarea.value;
-            var updatedImage = imageInput.value;
-            document.querySelectorAll('.overlay-intranet-page .text-intranet-page')[currentPhraseIndex].innerText = updatedPhrase;
-            document.querySelectorAll('.image-container-intranet-page img')[currentPhraseIndex].src = updatedImage;
-            phrases[currentPhraseIndex] = updatedPhrase;
-            images[currentPhraseIndex] = updatedImage;
-            popup.style.display = 'none';
-        } else {
-            var updatedPhrase = textarea.value;
-            var updatedImage = imageInput.value;
-            $.post('php/Sample/addGalerie.php', { phrase: updatedPhrase, image: updatedImage }, function(response) {
-                window.location.reload();
-            });
-            popup.style.display = 'none';
-        }
-    });
-});
-</script>
-<script>
-    buttonAllIsRead = document.getElementById("allIsRead");
-    buttonAllIsRead.addEventListener("click", function() {
-        var xhr = new XMLHttpRequest();
-        xhr.open('GET', 'php/admin/updateNotifications.php', true);
-        xhr.send();
-
-        window.location.reload();
-    })
-</script>
-<script>
-    function deconnexion() {
-        var xhr = new XMLHttpRequest();
-        xhr.open('GET', 'php/Sample/core/deconnexion.php', true);
-        xhr.send();
-
-        window.location.href = 'index.html';
-    }
-</script>
 </html>

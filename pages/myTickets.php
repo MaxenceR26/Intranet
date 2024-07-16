@@ -118,7 +118,7 @@ $stmt->close();
                         <a class="dropdown-item" href="#" style="color:#979797"><?php echo '<span style="font-weight:bold; color:#464646">></span> '.htmlspecialchars($msg); ?></a>
                     </li>
                 <?php endforeach; ?>
-                <a href="#" class="d-flex justify-content-center" id="allIsRead">Tous lu</a>
+                <a href="#" class="d-flex justify-content-center" onclick="allIsRead('../')">Tous lu</a>
             <?php else: ?>
                 <li><a class="dropdown-item" href="#">Vous n'avez pas de notifications</a></li>
             <?php endif; ?>
@@ -163,7 +163,7 @@ $stmt->close();
                 ?>
                 
                 <li>
-                <a class="dropdown-item" onclick="deconnexion()" href="">Déconnexion</a>
+                <a class="dropdown-item" onclick="deconnexion('../')" href="">Déconnexion</a>
                 </li>
             </ul>
             </div>
@@ -240,28 +240,14 @@ $stmt->close();
             <a href='newTickets.php' style='padding:5px; color: gray; border: 1px solid gray; font-weight:600;'>+ Nouveau Ticket</a>
         </div>
     </div>
+    <script src="../js/deconnexion.js"></script>
+    <script
+    type="text/javascript"
+    src="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/7.3.1/mdb.umd.min.js"
+    ></script>
+    <script src="../js/updateNotifications.js"></script>
 </body>
-<script
-  type="text/javascript"
-  src="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/7.3.1/mdb.umd.min.js"
-></script>
-<script>
-    buttonAllIsRead = document.getElementById("allIsRead");
-    buttonAllIsRead.addEventListener("click", function() {
-        var xhr = new XMLHttpRequest();
-        xhr.open('GET', '../php/admin/updateNotifications.php', true);
-        xhr.send();
 
-        window.location.reload();
-    })
-</script>
-<script>
-    function deconnexion() {
-        var xhr = new XMLHttpRequest();
-        xhr.open('GET', '../php/Sample/core/deconnexion.php', true);
-        xhr.send();
 
-        window.location.href = '../index.html';
-    }
-</script>
+
 </html>
