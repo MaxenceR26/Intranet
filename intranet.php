@@ -293,6 +293,7 @@ $stmt->close();
                                 ";
                                 if ($_SESSION['idroles'] == '2' or $_SESSION['idroles'] == 3) {
                                     echo "<div class='iconModify-intranet-page'>
+                                            <a href='{$row['link']}' target='_BLANK'><i class='fa-solid fa-file-arrow-down'></i></a>&nbsp;
                                             <button class='deleteImage' data-index='{$row['link']}'><i class='fa-solid fa-trash'></i></button>
                                         </div>";
                                 }                            
@@ -320,7 +321,7 @@ $stmt->close();
             <button id='saveChanges-intranet-page' class="mt-5">Ajouter</button>
         </div>
     </div>
-    
+
     <script src="js/deconnexion.js"></script>
     <script src="js/nav.js"></script>
     <script src="js/slider.js"></script>
