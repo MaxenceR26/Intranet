@@ -1,10 +1,26 @@
 document.addEventListener('DOMContentLoaded', function() {
     const calendar = document.getElementById('calendar');
     let currentDate = new Date();
-    let events = {
-        '2024-7-17': 'Location voiture le 17/07/2024',
-        '2024-7-22': 'Concert le 22/07/2024'
-    };
+    let events = {};
+
+    // Fonction pour récupérer les événements depuis le serveur PHP
+    function fetchEvents() {
+        console.log('Fetching events...');
+        fetch('../api/calendar.php')
+            .then(response => {
+                console.log('Response received:', response);
+                if (!response.ok) {
+                    throw new Error('Network response was not ok ' + response.statusText);
+                }
+                return response.json();
+            })
+            .then(data => {
+                console.log('Data received:', data);
+                events = data;
+                renderCalendar(currentDate.getMonth(), currentDate.getFullYear());
+            })
+            .catch(error => console.error('Erreur lors de la récupération des événements:', error));
+    }
 
     const months = [
         'January', 'February', 'March', 'April', 'May', 'June',
@@ -12,6 +28,9 @@ document.addEventListener('DOMContentLoaded', function() {
     ];
 
     function renderCalendar(month, year) {
+        console.log('Rendering calendar for:', month, year);
+        console.log('Events:', events);
+
         calendar.innerHTML = `
             <header>
                 <button id="prevMonth">&lt;</button>
@@ -38,9 +57,11 @@ document.addEventListener('DOMContentLoaded', function() {
         }
 
         for (let i = 1; i <= lastDay; i++) {
-            const dayKey = `${year}-${month + 1}-${i}`;
+            const randomColor = Math.floor(Math.random() * 16777215).toString(16);
+
+            const dayKey = `${year}-${(month + 1).toString().padStart(2, '0')}-${i.toString().padStart(2, '0')}`;
             const hasEvent = events[dayKey] ? 'has-event' : '';
-            const eventDot = hasEvent ? '<div class="event-dot"></div>' : '';
+            const eventDot = hasEvent ? `<div class="event-dot" style="background-color: #${randomColor}"></div>` : '';
             daysContainer.innerHTML += `
                 <div class="day ${hasEvent}" data-date="${dayKey}">
                     <div class="date">${i}</div>
@@ -49,11 +70,11 @@ document.addEventListener('DOMContentLoaded', function() {
         }
 
         document.getElementById('prevMonth').addEventListener('click', () => {
-            changeMonth(-1);
+            changeMonth(-1); // Change to subtract 12 months
         });
 
         document.getElementById('nextMonth').addEventListener('click', () => {
-            changeMonth(1);
+            changeMonth(1); // Change to add 12 months
         });
 
         document.querySelectorAll('.day.has-event').forEach(day => {
@@ -62,17 +83,24 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 
     function changeMonth(step) {
-        currentDate.setMonth(currentDate.getMonth() + step);
+        const newMonth = currentDate.getMonth() + step;
+        currentDate.setMonth(newMonth);
+
+        if (newMonth < 0) {
+            currentDate.setFullYear(currentDate.getFullYear() - 1);
+            currentDate.setMonth(11);
+        }
+
         renderCalendar(currentDate.getMonth(), currentDate.getFullYear());
     }
 
     function showEventDetails(event) {
         const date = event.currentTarget.getAttribute('data-date');
-        const eventDetails = events[date];
+        const eventType = events[date];
         const modal = document.getElementById('eventModal');
-        const eventDetailsContainer = document.getElementById('eventDetails');
+        const eventDetailsContainer = document.getElementById('eventType');
 
-        eventDetailsContainer.placeholder = eventDetails;
+        eventDetailsContainer.placeholder = eventType;
         modal.style.display = 'block';
 
         const span = document.getElementsByClassName('close')[0];
@@ -87,6 +115,5 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     }
 
-    renderCalendar(currentDate.getMonth(), currentDate.getFullYear());
+    fetchEvents(); // Appel pour récupérer les événements au chargement de la page
 });
-

@@ -60,7 +60,6 @@ body {
 #calendar .days div .event-dot {
     width: 1px;
     height: 1px;
-    background-color: red;
     border-radius: 50%;
     position: absolute;
     bottom: -1px;
@@ -102,4 +101,9 @@ body {
     color: black;
     text-decoration: none;
     cursor: pointer;
+}
+
+.eventDetails {
+    display: flex;
+    flex-direction: column;
 }
