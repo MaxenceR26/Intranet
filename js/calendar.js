@@ -1,26 +1,38 @@
 document.addEventListener('DOMContentLoaded', function() {
     const calendar = document.getElementById('calendar');
+    const currentScript = window.pageName;
     let currentDate = new Date();
     let events = {};
+    let color = {
+        'Voitures': 'blue',
+        'Salle': 'red',
+        'Rdv-rEu': 'orange',
+        "twalet": 'green'
+    };
 
     // Fonction pour récupérer les événements depuis le serveur PHP
-    function fetchEvents() {
-        console.log('Fetching events...');
-        fetch('../api/calendar.php')
-            .then(response => {
-                console.log('Response received:', response);
-                if (!response.ok) {
-                    throw new Error('Network response was not ok ' + response.statusText);
+     function fetchEvents() {
+            console.log('Fetching events...');
+            axios.get('http://localhost:5000/')
+                .then(response => {
+                    console.log('Data received:', response.data);
+                    events = formatEvents(response.data);
+                    renderCalendar(new Date().getMonth(), new Date().getFullYear());
+                })
+                .catch(error => console.error('Erreur lors de la récupération des événements:', error));
+        }
+
+        function formatEvents(eventArray) {
+            const formattedEvents = {};
+            eventArray.forEach(event => {
+                const eventDate = event.event_date.split('T')[0]; // Assure que l'heure est supprimée
+                if (!formattedEvents[eventDate]) {
+                    formattedEvents[eventDate] = [];
                 }
-                return response.json();
-            })
-            .then(data => {
-                console.log('Data received:', data);
-                events = data;
-                renderCalendar(currentDate.getMonth(), currentDate.getFullYear());
-            })
-            .catch(error => console.error('Erreur lors de la récupération des événements:', error));
-    }
+                formattedEvents[eventDate].push(event);
+            });
+            return formattedEvents;
+        }
 
     const months = [
         'January', 'February', 'March', 'April', 'May', 'June',
@@ -57,11 +69,12 @@ document.addEventListener('DOMContentLoaded', function() {
         }
 
         for (let i = 1; i <= lastDay; i++) {
-            const randomColor = Math.floor(Math.random() * 16777215).toString(16);
+            const randomColor = color[currentScript]
+            
 
             const dayKey = `${year}-${(month + 1).toString().padStart(2, '0')}-${i.toString().padStart(2, '0')}`;
             const hasEvent = events[dayKey] ? 'has-event' : '';
-            const eventDot = hasEvent ? `<div class="event-dot" style="background-color: #${randomColor}"></div>` : '';
+            const eventDot = hasEvent ? `<div class="event-dot" style="background-color: ${randomColor}"></div>` : '';
             daysContainer.innerHTML += `
                 <div class="day ${hasEvent}" data-date="${dayKey}">
                     <div class="date">${i}</div>
@@ -86,21 +99,17 @@ document.addEventListener('DOMContentLoaded', function() {
         const newMonth = currentDate.getMonth() + step;
         currentDate.setMonth(newMonth);
 
-        if (newMonth < 0) {
-            currentDate.setFullYear(currentDate.getFullYear() - 1);
-            currentDate.setMonth(11);
-        }
+
 
         renderCalendar(currentDate.getMonth(), currentDate.getFullYear());
     }
 
     function showEventDetails(event) {
         const date = event.currentTarget.getAttribute('data-date');
-        const eventType = events[date];
         const modal = document.getElementById('eventModal');
         const eventDetailsContainer = document.getElementById('eventType');
 
-        eventDetailsContainer.placeholder = eventType;
+        eventDetailsContainer.placeholder = events[date][0]['event_title'];
         modal.style.display = 'block';
 
         const span = document.getElementsByClassName('close')[0];
