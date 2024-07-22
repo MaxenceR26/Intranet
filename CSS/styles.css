@@ -1621,11 +1621,24 @@ tbody tr:hover {
 }
 
 .return-page {
-    margin-top: 10%;
+    margin-top: 5%;
 }
 
 #backButton-page button {
     padding: 10px;
+    border: 1px solid gray;
+    color: rgb(95, 95, 95);
+
+    &:hover {
+        color: rgb(56, 56, 56);
+    }
+}
+
+#eventButton-page {
+    display: none;
+}
+
+#new-page input[type='submit'] {
     border: 1px solid gray;
     color: rgb(95, 95, 95);
 
