@@ -14,12 +14,21 @@
             <form id="formulaire" method="get">
                 <label for="users">Nom d'utilisateur</label>
                 <input class="input" name="username" type="text">
-                <label for="users">Mot de passe</label>
+                <label for="users">Prénom</label>
+                <input class="input" name="firstname" type="text">
+                <label for="users">Nom</label>
+                <input class="input" name="lastname" type="text">
+                <label for="users">E-mail</label>
+                <input class="input" name="email" type="email">
+                <label for="users">Fonctions</label>
+                <input class="input" name="fonctions" type="text">
+                <label for="users">Numéro de téléphone</label>
+                <input class="input" name="phonenumber" type="text">
+                <label for="users">Mot de pass</label>
                 <input class="input" name="password" type="password">
                 
                 <div class="conButton">
-                    <a href="inscription.html" id="submitInscription">Inscription</a>
-                    <input type="submit" id="submit" value="Connexion">
+                    <input type="submit" id="submit" value="Valider">
                 </div>
                 
             </form>
@@ -37,10 +46,10 @@
             
             $.ajax({
                 type: 'GET',
-                url: 'php/Sample/user.php',
+                url: 'php/Sample/inscription.php',
                 data: formData,
                 success: function(response) {
-                    window.location.replace('/intranet/intranet.php');
+                    window.location.replace('/intranet/index.html');
                 },
                 error: function(xhr, status, error) {
                     console.log('Erreur AJAX : ' + error);

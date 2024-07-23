@@ -141,6 +141,7 @@ header p {
     width: 35px; /* Taille de votre image */
     height: 35px; /* Taille de votre image */
     border-radius: 50%; /* Rendre la div ronde */
+    object-fit: cover;
     background-size: cover; /* Ajuster l'image pour couvrir toute la div */
     background-position: center; /* Centrer l'image dans la div */
     pointer-events: none;
@@ -1196,6 +1197,7 @@ p a {
     width: 165px; /* Taille de votre image */
     height: 165px; /* Taille de votre image */
     border-radius: 50%; /* Rendre la div ronde */
+    object-fit: cover;
     background-size: cover; /* Ajuster l'image pour couvrir toute la div */
     background-position: center; /* Centrer l'image dans la div */
 }

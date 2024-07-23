@@ -46,6 +46,7 @@ body {
     border: 1px solid var(--var-border-input);
     margin: 0;
     cursor: pointer;
+    font-size: 13px;
     &:hover {
         color: #6d6d6d;
         transition: 0.6s;
@@ -58,5 +59,24 @@ body {
 
 .box form .conButton {
     display: flex;
-    justify-content: end;
+    justify-content: space-between;
+}
+
+#submitInscription {
+    width: 120px;
+    background-color: var(--var-background-color);
+    border: 1px solid var(--var-border-input);
+    margin: 0;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    border-radius: 50px;
+    justify-content: center;
+    text-decoration: none;
+    color: black;
+    font-size: 14px;
+    &:hover {
+        color: #6d6d6d;
+        transition: 0.6s;
+    }
 }
