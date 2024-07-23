@@ -37,7 +37,7 @@ $stmt->close();
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="page" content="Rdv-rEu">
+    <meta name="page" content="Voitures">
     <link rel="stylesheet" href="../CSS/styles.css">
     <script src="https://kit.fontawesome.com/11b0336c50.js" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>

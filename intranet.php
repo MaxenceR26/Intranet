@@ -144,7 +144,7 @@ $stmt->close();
                 <li>
                 <a class="dropdown-item" href="pages/parametre.php">Mes paramètres</a>
                 </li>
-                <li><a class="dropdown-item" href="pages/locations.php">Locations</a></li>
+                <li><a class="dropdown-item" href="pages/rendezvous.php">Locations</a></li>
                 <li><a class="dropdown-item" href="pages/myTickets.php">Mes Tickets</a></li>
                 <li><a class="dropdown-item" href="pages/link.php">Mes Liens</a></li>
                 <li><a class="dropdown-item" href="pages/newTickets.php">Nouveau ticket</a></li>
