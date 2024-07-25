@@ -2,7 +2,7 @@
 <br/>
 <div align="center">
 <a href="https://github.com/MaxenceR26/">
-<img src="https://imgur.com/pXDcIkx.jpg" alt="Logo" width="80" height="80"><img src="https://imgur.com/t4d3KHa.jpg" alt="Logo" width="80" height="80"><img src="https://imgur.com/Od6WrnG.jpg" alt="Logo" width="80" height="80">
+<img src="https://imgur.com/pXDcIkx.jpg" alt="Logo" height="80"><img src="https://imgur.com/t4d3KHa.jpg" alt="Logo" height="80"><img src="https://imgur.com/Od6WrnG.jpg" alt="Logo" height="80">
 </a>
 <h3 align="center">Intranet</h3>
 <p align="center">
