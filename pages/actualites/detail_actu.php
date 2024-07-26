@@ -193,7 +193,7 @@ $mysqli->close();
                 </li>
                 <li><a class="dropdown-item" href="../../pages/newTickets.php">Nouveau ticket</a></li>
                 <?php
-                    if ($_SESSION['roles'] && ($_SESSION['supprimer'] == 1)) {
+                    if ($_SESSION['idroles'] >= 2) {
                         echo "<li>
                                 <a class='dropdown-item' href='../../admin/index.php'>Panel Admin</a>
                             </li>";

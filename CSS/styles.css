@@ -231,7 +231,7 @@ header p {
 .container-actu-intranet-page .box-intranet-page {
     display: flex !important;
     justify-content: center !important;
-    flex-direction: row !important;
+    flex-direction: column !important;
     align-items: center;
     height: 20vh;
     margin: 5%;

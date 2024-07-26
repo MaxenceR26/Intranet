@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <script src="http://code.jquery.com/jquery.js" type="text/javascript"></script>
     <link rel="stylesheet" href="../../CSS/panel-nav.css">
-    <link rel="stylesheet" href="../../CSS/actuStyle.css">
+    <link rel="stylesheet" href="../../CSS/styles.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"/>
     <title>Admin Panel</title>
     <link rel="icon" href="../../images/1719307876_logo.ico"/>

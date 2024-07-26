@@ -12,11 +12,11 @@ if (!isset($_SESSION['state'])) {
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="../../CSS/panel-nav.css">
     <link rel="stylesheet" href="../style.css">
+    <link rel="stylesheet" href="../../CSS/styles.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"/>
     <script src="https://kit.fontawesome.com/11b0336c50.js" crossorigin="anonymous"></script>
     <title>Admin Panel</title>
     <link rel="icon" href="../../images/1719307876_logo.ico"/>
-   
 </head>
 <body>
     <nav>
@@ -30,8 +30,7 @@ if (!isset($_SESSION['state'])) {
             if ($_SESSION["idroles"] == "3") {
                 echo "<li><a href='../index.php'>Gestion utilisateurs</a></li>";
             }
-
-            ?>
+        ?>
             <li><a href="newActualites.php">Ajouter une actualité</a></li>
             <li><a class='active' href="communes.php">Annuaire mairies</a></li>
             <li><a href="services.php">Annuaire services</a></li>
@@ -40,61 +39,48 @@ if (!isset($_SESSION['state'])) {
                 echo "<li><a href='tickets.php'>Tickets</a></li>
                 <li><a href='archive.php'>Tickets Archivés</a></li>";
             }
-
             ?>
             <li><a href="../../intranet.php">Intranet</a></li>
         </ul>
     </nav>
     <div class="box">
-        <table id="animated-table">
-            <thead>
-                <tr>
-                <th>Commune</th>
-                <th>Maire</th>
-                <th>Adresse Postale</th>
-                <th>Téléphone</th>
-                <th>Mail</th>
-                <th></th>
-                </tr>
-            </thead>
-            <tbody>
-                <?php
-                require_once '../../php/Sample/core/connection.php';
+        <?php
+        require_once '../../php/Sample/core/connection.php';
 
-                $sql = "SELECT * FROM communes";
-                $result = $mysqli->query($sql);
+        $sql = "SELECT * FROM communes";
+        $result = $mysqli->query($sql);
 
-                if ($result) {
-                    if ($result->num_rows > 0) {
-                        while ($row = $result->fetch_assoc()) {
-                            $commune = $row['commune'];
-                            $maire = $row['maire'];
-                            $adresse_postale = $row['adresse_postale'];
-                            $telephone = $row['telephone'];
-                            $mail = $row['mail'];
-                            echo "<tr data-commune='$commune'>
-                            <td>$commune</td>
-                            <td>$maire</td>
-                            <td>$adresse_postale</td>
-                            <td>$telephone</td>
-                            <td>$mail</td>
-                            <td class='iconButton'><i class='fa-solid fa-pen'></i></td>
-                            </tr>";
-                        }
-                    } else {
-                        echo "Aucun utilisateur trouvé.";
-                    }
-                } else {
-                    echo "Erreur dans l'exécution de la requête : " . $mysqli->error;
-                }
+        if ($result && $result->num_rows > 0) {
+            echo "<table id='animated-table'>
+                <thead>
+                    <tr>
+                    <th>Commune</th>
+                    <th>Maire</th>
+                    <th>Adresse Postale</th>
+                    <th>Téléphone</th>
+                    <th>Mail</th>
+                    <th></th>
+                    </tr>
+                </thead>
+                <tbody>";
+            
+            while ($row = $result->fetch_assoc()) {
+                $commune = $row['commune'];
+                $maire = $row['maire'];
+                $adresse_postale = $row['adresse_postale'];
+                $telephone = $row['telephone'];
+                $mail = $row['mail'];
+                echo "<tr data-commune='$commune'>
+                    <td>$commune</td>
+                    <td>$maire</td>
+                    <td>$adresse_postale</td>
+                    <td>$telephone</td>
+                    <td>$mail</td>
+                    <td class='iconButton'><i class='fa-solid fa-pen'></i></td>
+                </tr>";
+            }
 
-                $mysqli->close();
-                
-                ?>
-            </tbody>
-        </table>
-    </div>
-    <?php
+            echo "</tbody></table>";
             echo "<a id='removeButton' href='#'>Supprimer l'actualité</a>";
             echo "<div id='myModal' class='modal'>
                 <div class='modal-content'>
@@ -112,7 +98,13 @@ if (!isset($_SESSION['state'])) {
                     </div>
                 </div>
             </div>";
-            ?>
+        } else {
+            echo "<p>Aucune communes trouvé.</p>";
+        }
+
+        $mysqli->close();
+        ?>
+    </div>
 </body>
 <script>
 document.addEventListener("DOMContentLoaded", function() {
@@ -124,10 +116,8 @@ document.addEventListener("DOMContentLoaded", function() {
         icon.addEventListener("click", function(event) {
             event.stopPropagation();
             
-            // Récupérer le nom et le prénom de l'utilisateur sur lequel vous avez cliqué
             const commune = this.closest("tr").dataset.commune;
 
-            // Envoyer une requête AJAX pour stocker le nom et le prénom dans une session PHP
             const xhr = new XMLHttpRequest();
             xhr.open("POST", "storeUserDataInSession.php");
             xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
@@ -162,7 +152,6 @@ document.addEventListener("DOMContentLoaded", function () {
         }, (i + j * 1.5) * 50);
       });
     });
-  });
+});
 </script>
-
 </html>
