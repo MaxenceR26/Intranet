@@ -92,6 +92,7 @@ session_start();
 
                 $sql = "SELECT * FROM tickets WHERE etat = '1'";
                 $result = $mysqli->query($sql);
+                $found = false;
 
                 if ($result) {
                     if ($result->num_rows > 0) {

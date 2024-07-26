@@ -105,7 +105,7 @@ if (!isset($_SESSION['state'])) {
         </table>
     </div>
     <div id="myModal" class="modal">
-        <div class="modal-content" style="height: 200px;">
+        <div class="modal-content" style="height: 300px;">
             <span class="close">&times;</span>
             <div class="elementModal">
                 <h2 id="modalTitle">Modifier les rôles de</h2>

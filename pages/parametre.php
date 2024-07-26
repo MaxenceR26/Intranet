@@ -215,7 +215,7 @@ $mysqli->close();
             <input type="submit" class="button-param-page" value="Enregistrer les modifications">
         </div>
     </form>
-    <script src="js/deconnexion.js"></script>
+    <script src="../js/deconnexion.js"></script>
     <script src="../js/nav.js"></script>
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/7.3.1/mdb.umd.min.js"></script>
     <script>
