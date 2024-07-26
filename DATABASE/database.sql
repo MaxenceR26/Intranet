@@ -108,7 +108,7 @@ CREATE TABLE `users` (
   `bio` text NOT NULL,
   `img` text CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
   `idroles` int NOT NULL,
-  `poste` text NOT NULL,
+  `poste` text CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci,
   `last-conn` text NOT NULL,
   `fonctions` text NOT NULL,
   `numero` varchar(16) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL
