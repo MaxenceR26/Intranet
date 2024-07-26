@@ -21,7 +21,7 @@ if (isset($_GET['q'])) {
     $query = $_GET['q'];
 
     // Requête pour rechercher des utilisateurs par nom d'utilisateur
-    $sql_users = "SELECT username, lastname, firstname, img, email FROM users WHERE username LIKE '%$query%' LIMIT 10";
+    $sql_users = "SELECT username, lastname, firstname, img, email FROM users WHERE lastname LIKE '%$query%' OR firstname LIKE '%$query%' LIMIT 10";
     $result_users = $mysqli->query($sql_users);
 
     // Requête pour rechercher des employés par nom ou prénom
