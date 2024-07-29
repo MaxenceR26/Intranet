@@ -283,7 +283,7 @@ $stmt->close();
         <h1>Galerie photo</h1>
         <div class="boxGalerie-intranet-page">
             <?php
-                $sql = "SELECT bio, link FROM galerie";
+                $sql = "SELECT bio, link, name FROM galerie"; // Assurez-vous de sélectionner également le 'name'
                 $result = $mysqli->query($sql);
 
                 if ($result->num_rows > 0) {
@@ -291,12 +291,14 @@ $stmt->close();
                         echo "<div class='image-container-intranet-page'>
                                 <img src='{$row['link']}' alt='Image Description' loading='lazy'>
                                 ";
-                                if ($_SESSION['idroles'] == '2' or $_SESSION['idroles'] == 3) {
-                                    echo "<div class='iconModify-intranet-page'>
-                                            <a href='{$row['link']}' target='_BLANK'><i class='fa-solid fa-file-arrow-down'></i></a>&nbsp;
-                                            <button class='deleteImage' data-index='{$row['link']}'><i class='fa-solid fa-trash'></i></button>
-                                        </div>";
-                                }                            
+                                // Affichage des options de modification pour les utilisateurs autorisés
+                                echo "<div class='iconModify-intranet-page'>
+                                        <a href='{$row['link']}' target='_BLANK'><i class='fa-solid fa-file-arrow-down'></i></a>&nbsp;";
+                                        // Afficher le bouton supprimer si l'utilisateur est le propriétaire de la photo ou a un rôle 3
+                                        if ($row['name'] == $_SESSION['username'] || $_SESSION['idroles'] == 3) {
+                                            echo "<button class='deleteImage' data-index='{$row['link']}'><i class='fa-solid fa-trash'></i></button>";
+                                        }
+                                echo "</div>";
                                 echo "
                                 <div class='overlay-intranet-page'>
                                     <div class='text-intranet-page'>{$row['bio']}</div>
@@ -305,11 +307,12 @@ $stmt->close();
                     }
                 } else {}
                 $mysqli->close();
-                ?>
-                <input type='file' name='file' id='file' class="file-intranet-page">
-                <button id="fileButton-intranet-page">+</button>
+            ?>
+            <input type='file' name='file' id='file' class="file-intranet-page">
+            <button id="fileButton-intranet-page">+</button>
         </div>
     </div>
+
 
     <div id='popup-intranet-page' class='popup-intranet-page'>
         <div class='popup-content-intranet-page'>
