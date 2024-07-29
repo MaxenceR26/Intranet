@@ -182,18 +182,18 @@ $stmt->close();
         <div id="eventModal-page-calendar" class="modal-page-calendar">
             <div class="modal-content-page-calendar">
                 <span class="close-page-calendar">&times;</span>
-                <h2>Détails</h2>
+                <h2>Détails du jour</h2>
                 <div class="eventDetails-page-calendar">
-                    <label>Type d'évènement</label>
+                    <label>Titre de l'évenement</label>
                     <input type="text" disabled id="eventType-page-calendar" placeholder="">
-                    <label>Nom de l'évenement</label>
+                    <label>Nom et Prénom</label>
                     <input type="text" disabled id="eventDetails-page-calendar" placeholder="">
-                    <label>From</label>
+                    <label>Description de l'évenement</label>
+                    <textarea type="text" disabled id="eventDesc-page-calendar" placeholder=""></textarea>
+                    <label>Le</label>
                     <input type="text" disabled id="eventFrom-page-calendar" placeholder="">
-                    <label>To</label>
+                    <label>Heure de l'évenement</label>
                     <input type="text" disabled id="eventTo-page-calendar" placeholder="">
-                    <label>Qui</label>
-                    <input type="text" disabled id="eventWho-page-calendar" placeholder="">
                 </div>
             </div>
         </div>
