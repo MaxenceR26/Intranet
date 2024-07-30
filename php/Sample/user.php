@@ -8,14 +8,15 @@ $_SESSION['state'] = false;
 $date = date("d-m-Y H:i");
 
 $username = $_GET["username"];
+$password = $_GET["password"];
 
-$sql = "SELECT id, firstname, username, email, lastname, img, idroles, bio FROM users WHERE username = '$username'";
+$sql = "SELECT id, firstname, username, email, lastname, img, idroles, bio, `password` FROM users WHERE username = '$username'";
 $result = $mysqli->query($sql);
 
 if ($result) {
     if ($result->num_rows > 0) {
         $row = $result->fetch_assoc();
-        if ($row['username'] == $username){
+        if ($row['username'] == $username and password_verify($password, $row['password'])){
             $_SESSION['state'] = true;
             $_SESSION['firstname'] = $row['firstname'];
             $_SESSION['username'] = $row['username'];
