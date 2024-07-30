@@ -126,7 +126,15 @@ document.addEventListener('DOMContentLoaded', function() {
         const date = event.currentTarget.getAttribute('data-date');
         const modal = document.getElementById('eventModal-page-calendar');
         const eventDetailsContainer = document.getElementById('eventType-page-calendar');
+        const nomDetailsContainer = document.getElementById('eventDetails-page-calendar');
+        const eventFromDetailsContainer = document.getElementById('eventFrom-page-calendar');
+        const eventToDetailsContainer = document.getElementById('eventTo-page-calendar');
+        const eventDescDetailsContainer = document.getElementById('eventDesc-page-calendar');
 
+        eventDescDetailsContainer.placeholder = events[date][0]['descriptions'];
+        eventToDetailsContainer.placeholder = events[date][0]['hours'];
+        eventFromDetailsContainer.placeholder = events[date][0]['event_date'];
+        nomDetailsContainer.placeholder = events[date][0]['name'];
         eventDetailsContainer.placeholder = events[date][0]['event_title'];
         modal.style.display = 'block';
 
@@ -144,34 +152,3 @@ document.addEventListener('DOMContentLoaded', function() {
 
     fetchEvents(); // Appel pour récupérer les événements au chargement de la page
 });
-
-function convertDateFormat(dateStr) {
-    var dateParts = dateStr.split('/');
-    var formattedDate = dateParts[2] + '-' + dateParts[1] + '-' + dateParts[0];
-    return formattedDate;
-}
-
-function newEvents() {
-    // var newDateFrom = convertDateFormat(window.from);
-    // var newDateTo = convertDateFormat(window.from);
-
-    axios.post('http://localhost:5000/createevent/', {
-        event_title: window.title,
-        event_date: window.dateDay,
-        descriptions: window.desc,
-        hours: window.hours,
-        type: currentScript
-      }, {
-        headers: {
-          'accept': 'application/json',
-          'Content-Type': 'application/json'
-        }
-      })
-      .then(response => {
-        window.location.reload();
-        eventButton.style.display = 'none';
-      })
-      .catch(error => {
-        console.error('Une erreur est survenue pendant l\'execution de la reqûete', error);
-      });
-}

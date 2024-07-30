@@ -39,7 +39,9 @@ This API is realised with NodeJS
    ```sh
    git clone https://github.com/MaxenceR26/Intranet.git
    ```
-3. Inject the SQL Database on your phpmyadmin.
+3. Go to PhpMyAdmin and create a new database
+4. Change the name and other informations of your database in file php/Sample/core/config.php
+5. Inject the SQL code situed on DATABASE/database.sql in your database to create all table
 4. Run ```index.html```
  ## License
 

@@ -55,8 +55,8 @@ tbody tr:hover {
     margin: 15% auto;
     padding: 20px;
     border: 1px solid #888;
-    width: 350px;
-    height: 50%;
+    width: 550px;
+    height: 60%;
     color: #0075a6;
     
 
@@ -72,7 +72,7 @@ tbody tr:hover {
 }
 
 .elementModal input {
-    width: 150px;
+    width: 100px;
     height: 25px;
     border: 1px solid rgb(209, 209, 209);
     margin: 5px;
