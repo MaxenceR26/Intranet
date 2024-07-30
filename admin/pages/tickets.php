@@ -56,7 +56,6 @@ if (!isset($_SESSION['state'])) {
 
     .box {
         padding: 20px;
-        background-color: #fff;
     }
     #toast {
         visibility: hidden;
