@@ -18,19 +18,26 @@ $result_mairies = [];
 
 // Traitement de la recherche
 if (isset($_GET['q'])) {
-    $query = $_GET['q'];
+    $query = htmlspecialchars($_GET['q'], ENT_QUOTES, 'UTF-8');
 
     // Requête pour rechercher des utilisateurs par nom d'utilisateur
-    $sql_users = "SELECT username, lastname, firstname, img, email FROM users WHERE lastname LIKE '%$query%' OR firstname LIKE '%$query%' LIMIT 10";
-    $result_users = $mysqli->query($sql_users);
+    $stmt_users = $mysqli->prepare("SELECT username, lastname, firstname, img, email FROM users WHERE lastname LIKE ? OR firstname LIKE ? LIMIT 10");
+    $search_term = "%$query%";
+    $stmt_users->bind_param('ss', $search_term, $search_term);
+    $stmt_users->execute();
+    $result_users = $stmt_users->get_result();
 
     // Requête pour rechercher des employés par nom ou prénom
-    $sql_employes = "SELECT nom, prenom, email, poste, numPort, numExt, dirFixe FROM services WHERE nom LIKE '%$query%' OR prenom LIKE '%$query%' LIMIT 10";
-    $result_employes = $mysqli->query($sql_employes);
+    $stmt_employes = $mysqli->prepare("SELECT nom, prenom, email, poste, numPort, numExt, dirFixe FROM services WHERE nom LIKE ? OR prenom LIKE ? LIMIT 10");
+    $stmt_employes->bind_param('ss', $search_term, $search_term);
+    $stmt_employes->execute();
+    $result_employes = $stmt_employes->get_result();
 
     // Requête pour rechercher des mairies par nom de commune
-    $sql_mairies = "SELECT commune, maire, adresse_postale, telephone, mail FROM communes WHERE commune LIKE '%$query%' LIMIT 10";
-    $result_mairies = $mysqli->query($sql_mairies);
+    $stmt_mairies = $mysqli->prepare("SELECT commune, maire, adresse_postale, telephone, mail FROM communes WHERE commune LIKE ? LIMIT 10");
+    $stmt_mairies->bind_param('s', $search_term);
+    $stmt_mairies->execute();
+    $result_mairies = $stmt_mairies->get_result();
 }
 
 ?>

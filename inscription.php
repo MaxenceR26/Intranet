@@ -1,3 +1,11 @@
+<?php
+session_start();
+if ($_SESSION['state']) {
+    header('Location: intranet.html');
+} else {
+    session_destroy();
+}
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -24,7 +32,7 @@
                 <input class="input" name="fonctions" type="text" required>
                 <label for="users">Numéro de téléphone</label>
                 <input class="input" name="phonenumber" type="text" required>
-                <label for="users">Mot de pass</label>
+                <label for="users">Mot de passe</label>
                 <input class="input" name="password" type="password" required>
                 
                 <div class="conButton">

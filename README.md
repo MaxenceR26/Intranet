@@ -42,7 +42,8 @@ This API is realised with NodeJS
 3. Go to PhpMyAdmin and create a new database
 4. Change the name and other informations of your database in file php/Sample/core/config.php
 5. Inject the SQL code situed on DATABASE/database.sql in your database to create all table
-4. Run ```index.html```
+6. Run the api to start the project
+7. Run ```index.html```
  ## License
 
 Distributed under the MIT License. See [MIT License](https://opensource.org/licenses/MIT) for more information.

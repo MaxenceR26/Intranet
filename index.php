@@ -1,3 +1,11 @@
+<?php
+session_start();
+if ($_SESSION['state']) {
+    header('Location: intranet.html');
+} else {
+    session_destroy();
+}
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -15,10 +23,10 @@
                 <label for="users">Nom d'utilisateur</label>
                 <input class="input" name="username" type="text" required>
                 <label for="users">Mot de passe</label>
-                <input class="input" name="password" type="password" required>
+                <input class="input" name="password" type="password" >
                 
                 <div class="conButton">
-                    <a href="inscription.html" id="submitInscription">Inscription</a>
+                    <a href="inscription.php" id="submitInscription">Inscription</a>
                     <input type="submit" id="submit" value="Connexion">
                 </div>
                 
