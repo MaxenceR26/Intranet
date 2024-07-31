@@ -19,7 +19,7 @@ Intranet created with full legacy
 
  ### Built With
 
-This API is realised with NodeJS
+This Intranet is realised with Legacy
 
 - [PHP](https://www.php.net/docs.php)
 - [HTML](https://developer.mozilla.org/fr/docs/Web/HTML)
@@ -51,4 +51,4 @@ Distributed under the MIT License. See [MIT License](https://opensource.org/lice
 
 Email - maxence.remy26@gmail.com
 
-Project Link: https://github.com/maxencer26/api
+Project Link: https://github.com/maxencer26/intranet
