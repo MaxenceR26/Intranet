@@ -11,6 +11,7 @@ $password = $_GET["password"];
 $firstname = $_GET["firstname"];
 $lastname = $_GET["lastname"];
 $email = $_GET["email"];
+$pswd = $_GET["password"];
 $fonctions = $_GET["fonctions"];
 $numero = $_GET["phonenumber"];
 $bio = "";
@@ -18,13 +19,14 @@ $img = 'images/icone-utilisateur.png';
 $idroles = 1;
 $poste = 'Consultant';
 
-$stmt = $mysqli->prepare("INSERT INTO users (firstname, username, email, lastname, img, idroles, numero, fonctions, bio, poste, `last-conn`) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
-$stmt->bind_param("sssssssssss", $firstname, $username, $email, $lastname, $img, $idroles, $numero, $fonctions, $bio, $poste, $date);        
+$hashedPassword = password_hash($password, PASSWORD_DEFAULT);
+
+$stmt = $mysqli->prepare("INSERT INTO users (firstname, username, email, lastname, img, idroles, numero, fonctions, bio, poste, `last-conn`, `password`) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
+$stmt->bind_param("ssssssssssss", $firstname, $username, $email, $lastname, $img, $idroles, $numero, $fonctions, $bio, $poste, $date, $hashedPassword);
 
 if ($stmt->execute()) {
-    echo "Ticket fait";
+    echo "Utilisateur créé avec succès";
 } else {
-    echo "erreur";
+    echo "Erreur lors de la création de l'utilisateur";
 }
-
 
