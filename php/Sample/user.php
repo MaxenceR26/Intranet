@@ -35,12 +35,12 @@ if ($result) {
             $stmt->close();
         } else {
             session_destroy();
-            header('Location: ../../index.html');
+            header('Location: ../../index.php');
             exit();
         }
     } else {
         session_destroy();
-        header('Location: ../../index.html');
+        header('Location: ../../index.php');
         exit();
     }
     $result->free();

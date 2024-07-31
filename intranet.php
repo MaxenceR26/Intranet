@@ -4,7 +4,7 @@ require_once 'php/Sample/actualites/getactualites.php';
 require 'php/Sample/core/connection.php';
 
 if (!isset($_SESSION['state'])) {
-    header('Location: index.html');
+    header('Location: index.php');
 }
 
 $email = $_SESSION['email'];
