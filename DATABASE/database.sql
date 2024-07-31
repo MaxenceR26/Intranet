@@ -1,3 +1,12 @@
+-- phpMyAdmin SQL Dump
+-- version 5.2.1
+-- https://www.phpmyadmin.net/
+--
+-- Hôte : 127.0.0.1:3306
+-- Généré le : mer. 31 juil. 2024 à 13:14
+-- Version du serveur : 8.2.0
+-- Version de PHP : 8.3.0
+
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
 SET time_zone = "+00:00";
@@ -7,6 +16,16 @@ SET time_zone = "+00:00";
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
 /*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
 /*!40101 SET NAMES utf8mb4 */;
+
+--
+-- Base de données : `osartis`
+--
+
+-- --------------------------------------------------------
+
+--
+-- Structure de la table `actualites`
+--
 
 CREATE TABLE `actualites` (
   `id` int NOT NULL,
@@ -18,6 +37,12 @@ CREATE TABLE `actualites` (
   `image` varchar(1000) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
+-- --------------------------------------------------------
+
+--
+-- Structure de la table `communes`
+--
+
 CREATE TABLE `communes` (
   `id` int NOT NULL,
   `commune` varchar(255) DEFAULT NULL,
@@ -27,17 +52,40 @@ CREATE TABLE `communes` (
   `mail` varchar(255) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
+-- --------------------------------------------------------
+
+--
+-- Structure de la table `events`
+--
+
 CREATE TABLE `events` (
   `id` int NOT NULL,
-  `event_date` date NOT NULL,
-  `event_title` varchar(255) NOT NULL
+  `event_date` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
+  `event_title` varchar(255) NOT NULL,
+  `descriptions` varchar(300) NOT NULL,
+  `hours` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
+  `type` varchar(25) NOT NULL,
+  `name` varchar(50) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Structure de la table `galerie`
+--
 
 CREATE TABLE `galerie` (
   `id` int NOT NULL,
   `bio` varchar(125) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
-  `link` varchar(1000) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL
+  `link` varchar(1000) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
+  `name` varchar(100) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Structure de la table `link`
+--
 
 CREATE TABLE `link` (
   `id` int NOT NULL,
@@ -45,6 +93,12 @@ CREATE TABLE `link` (
   `url` varchar(1500) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
   `email` varchar(150) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Structure de la table `notifications`
+--
 
 CREATE TABLE `notifications` (
   `id` int NOT NULL,
@@ -54,6 +108,12 @@ CREATE TABLE `notifications` (
   `created_at` timestamp NULL DEFAULT CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
+-- --------------------------------------------------------
+
+--
+-- Structure de la table `roles`
+--
+
 CREATE TABLE `roles` (
   `idroles` int NOT NULL,
   `nom` text NOT NULL,
@@ -62,6 +122,12 @@ CREATE TABLE `roles` (
   `modifier` tinyint(1) NOT NULL,
   `acpanel` tinyint(1) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Structure de la table `services`
+--
 
 CREATE TABLE `services` (
   `id` int NOT NULL,
@@ -73,6 +139,12 @@ CREATE TABLE `services` (
   `email` varchar(512) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT NULL,
   `poste` varchar(512) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Structure de la table `tickets`
+--
 
 CREATE TABLE `tickets` (
   `id` int NOT NULL,
@@ -88,6 +160,12 @@ CREATE TABLE `tickets` (
   `color` varchar(15) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT 'yellow'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
+-- --------------------------------------------------------
+
+--
+-- Structure de la table `ticketsmodif`
+--
+
 CREATE TABLE `ticketsmodif` (
   `foreignkey` int NOT NULL,
   `email` varchar(50) NOT NULL,
@@ -99,79 +177,158 @@ CREATE TABLE `ticketsmodif` (
   `prenomAnnuaire` varchar(255) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
+-- --------------------------------------------------------
+
+--
+-- Structure de la table `users`
+--
+
 CREATE TABLE `users` (
   `id` int NOT NULL,
   `firstname` text NOT NULL,
   `lastname` text NOT NULL,
   `username` text NOT NULL,
   `email` varchar(50) NOT NULL,
+  `password` varchar(100) NOT NULL,
   `bio` text NOT NULL,
   `img` text CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
   `idroles` int NOT NULL,
-  `poste` text CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci,
+  `poste` text NOT NULL,
   `last-conn` text NOT NULL,
   `fonctions` text NOT NULL,
   `numero` varchar(16) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
+--
+-- Index pour les tables déchargées
+--
+
+--
+-- Index pour la table `actualites`
+--
 ALTER TABLE `actualites`
   ADD PRIMARY KEY (`id`);
 
+--
+-- Index pour la table `communes`
+--
 ALTER TABLE `communes`
   ADD PRIMARY KEY (`id`);
 
+--
+-- Index pour la table `events`
+--
 ALTER TABLE `events`
   ADD PRIMARY KEY (`id`);
 
+--
+-- Index pour la table `galerie`
+--
 ALTER TABLE `galerie`
   ADD PRIMARY KEY (`id`);
 
+--
+-- Index pour la table `link`
+--
 ALTER TABLE `link`
   ADD PRIMARY KEY (`id`);
 
+--
+-- Index pour la table `notifications`
+--
 ALTER TABLE `notifications`
   ADD PRIMARY KEY (`id`);
 
+--
+-- Index pour la table `services`
+--
 ALTER TABLE `services`
   ADD PRIMARY KEY (`id`);
 
+--
+-- Index pour la table `tickets`
+--
 ALTER TABLE `tickets`
   ADD PRIMARY KEY (`id`),
   ADD KEY `foreignKey` (`foreignkey`);
 
+--
+-- Index pour la table `ticketsmodif`
+--
 ALTER TABLE `ticketsmodif`
   ADD KEY `foreignKey` (`foreignkey`);
 
+--
+-- Index pour la table `users`
+--
 ALTER TABLE `users`
   ADD PRIMARY KEY (`id`);
 
+--
+-- AUTO_INCREMENT pour les tables déchargées
+--
+
+--
+-- AUTO_INCREMENT pour la table `actualites`
+--
 ALTER TABLE `actualites`
-  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
+  MODIFY `id` int NOT NULL AUTO_INCREMENT;
 
+--
+-- AUTO_INCREMENT pour la table `communes`
+--
 ALTER TABLE `communes`
-  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=50;
+  MODIFY `id` int NOT NULL AUTO_INCREMENT;
 
+--
+-- AUTO_INCREMENT pour la table `events`
+--
 ALTER TABLE `events`
-  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id` int NOT NULL AUTO_INCREMENT;
 
+--
+-- AUTO_INCREMENT pour la table `galerie`
+--
 ALTER TABLE `galerie`
-  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+  MODIFY `id` int NOT NULL AUTO_INCREMENT;
 
+--
+-- AUTO_INCREMENT pour la table `link`
+--
 ALTER TABLE `link`
-  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
+  MODIFY `id` int NOT NULL AUTO_INCREMENT;
 
+--
+-- AUTO_INCREMENT pour la table `notifications`
+--
 ALTER TABLE `notifications`
-  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=32;
+  MODIFY `id` int NOT NULL AUTO_INCREMENT;
 
+--
+-- AUTO_INCREMENT pour la table `services`
+--
 ALTER TABLE `services`
-  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=69;
+  MODIFY `id` int NOT NULL AUTO_INCREMENT;
 
+--
+-- AUTO_INCREMENT pour la table `tickets`
+--
 ALTER TABLE `tickets`
-  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=187;
+  MODIFY `id` int NOT NULL AUTO_INCREMENT;
 
+--
+-- AUTO_INCREMENT pour la table `users`
+--
 ALTER TABLE `users`
-  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` int NOT NULL AUTO_INCREMENT;
 
+--
+-- Contraintes pour les tables déchargées
+--
+
+--
+-- Contraintes pour la table `ticketsmodif`
+--
 ALTER TABLE `ticketsmodif`
   ADD CONSTRAINT `ticketsmodif_ibfk_1` FOREIGN KEY (`foreignkey`) REFERENCES `tickets` (`foreignkey`);
 COMMIT;
