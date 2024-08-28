@@ -57,7 +57,7 @@ if ($_SESSION['state']) {
                 url: 'php/Sample/inscription.php',
                 data: formData,
                 success: function(response) {
-                    window.location.replace('/intranet/index.html');
+                    window.location.replace('/intranet/index.php');
                 },
                 error: function(xhr, status, error) {
                     console.log('Erreur AJAX : ' + error);
