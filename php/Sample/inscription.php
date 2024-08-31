@@ -2,13 +2,6 @@
 
 require_once 'core/connection.php';
 
-session_start();
-
-if (!isset($_SESSION['state'])) {
-    session_destroy();
-    header('Location: ../../index.html');
-}
-
 $_SESSION['state'] = false;
 $date = date("d-m-Y H:i");
 $username = htmlspecialchars($_GET["username"], ENT_QUOTES, 'UTF-8');
@@ -27,14 +20,44 @@ $poste = 'Consultant';
 // Hachage du mot de passe
 $hashedPassword = password_hash($password, PASSWORD_DEFAULT);
 
-// Préparation de la requête SQL
+$stmt = $mysqli->prepare("SELECT id FROM users WHERE username = ?");
+$stmt->bind_param("s", $username);
+$stmt->execute();
+$stmt->store_result();
+if ($stmt->num_rows > 0) {
+    echo json_encode(['code' => 0, 'message' => 'Username exists']);
+    $stmt->close();
+    exit;
+}
+$stmt->close();
+
+
+$stmt = $mysqli->prepare("SELECT id FROM users WHERE email = ?");
+$stmt->bind_param("s", $email);
+$stmt->execute();
+$stmt->store_result();
+if ($stmt->num_rows > 0) {
+    echo json_encode(['code' => 0, 'message' => 'Emails exists']);
+    $stmt->close();
+    exit;
+}
+$stmt->close();
+
+// Préparation de la requête SQL pour insérer l'utilisateur
 $stmt = $mysqli->prepare("INSERT INTO users (firstname, username, email, lastname, img, idroles, numero, fonctions, bio, poste, `last-conn`, `password`) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
 $stmt->bind_param("ssssssssssss", $firstname, $username, $email, $lastname, $img, $idroles, $numero, $fonctions, $bio, $poste, $date, $hashedPassword);
 
 // Exécution de la requête et gestion des erreurs
 if ($stmt->execute()) {
-    echo "Utilisateur créé avec succès";
+    
+    echo json_encode(['code' => 1, 'message' => 'User successfully created']);
 } else {
-    echo "Erreur lors de la création de l'utilisateur";
+    echo json_encode(['code' => 405, 'message' => 'Error on created account']);
 }
+
+$stmt->close();
+$mysqli->close();
+
+
+
 ?>

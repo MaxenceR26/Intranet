@@ -18,7 +18,9 @@ if ($_SESSION['state']) {
 <body>
     <div class="container">
         <div class="box">
+            
             <img src="images/logo.jpg" width="256">
+            
             <form id="formulaire" method="get">
                 <label for="users">Nom d'utilisateur</label>
                 <input class="input" name="username" type="text" required>
@@ -31,7 +33,7 @@ if ($_SESSION['state']) {
                 <label for="users">Fonctions</label>
                 <input class="input" name="fonctions" type="text" required>
                 <label for="users">Numéro de téléphone</label>
-                <input class="input" name="phonenumber" type="text" required>
+                <input class="input" name="phonenumber" type="tel" pattern="[0-9]{2}[0-9]{2}[0-9]{2}[0-9]{2}[0-9]{2}" required >
                 <label for="users">Mot de passe</label>
                 <input class="input" name="password" type="password" required>
                 
@@ -40,6 +42,12 @@ if ($_SESSION['state']) {
                 </div>
                 
             </form>
+            <div id="error">
+                <p>Un compte est déjà associé à ce nom d'utilisateur ou à cette email !</p>
+            </div>
+            <div id="errorSys">
+                <p>Un problème est survenu, veuillez réessayer plus tard ou contacter un administrateur système.</p>
+            </div>
         </div>
     </div>
 </body>
@@ -57,7 +65,22 @@ if ($_SESSION['state']) {
                 url: 'php/Sample/inscription.php',
                 data: formData,
                 success: function(response) {
-                    window.location.replace('/intranet/index.php');
+                    console.log(response)
+                    var data = JSON.parse(response);
+                    console.log(data.code)
+                    switch (data.code) {
+                        case 0:
+                            document.getElementById('error').style.display = 'flex';
+                            break;
+                        case 1:
+                            window.location.replace('/intranet/index.php');
+                            break;
+                        case 405:
+                            document.getElementById('error').style.display = 'none';
+                            document.getElementById('errorSys').style.display = 'flex';
+                            break;
+                    }
+                    
                 },
                 error: function(xhr, status, error) {
                     console.log('Erreur AJAX : ' + error);

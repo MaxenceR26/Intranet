@@ -48,7 +48,6 @@ if (isset($_GET['q'])) {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Intranet Osartis | Recherche</title>
-    <!-- Liens vers vos fichiers CSS -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/7.3.1/mdb.min.css">
 </head>
@@ -68,9 +67,7 @@ if (isset($_GET['q'])) {
                 <li class="nav-item">
                     <a class="nav-link" href="../../intranet.php">Osartis Intranet</a>
                 </li>
-                <!-- Ajoutez ici d'autres liens de navigation si nécessaire -->
             </ul>
-            <!-- Insérez ici d'autres éléments de la barre de navigation, comme les notifications et le profil -->
         </div>
     </div>
 </nav>
@@ -177,7 +174,6 @@ if (isset($_GET['q'])) {
     </div>
 </div>
 
-<!-- Liens vers les bibliothèques JavaScript et scripts personnalisés -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/js/all.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/7.3.1/mdb.min.js"></script>
 <script>
