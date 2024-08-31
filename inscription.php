@@ -1,7 +1,7 @@
 <?php
 session_start();
 if ($_SESSION['state']) {
-    header('Location: intranet.html');
+    header('Location: intranet.php');
 } else {
     session_destroy();
 }
