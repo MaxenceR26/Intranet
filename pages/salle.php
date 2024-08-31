@@ -255,7 +255,8 @@ $stmt->close();
                 event_date: window.dateDay,
                 descriptions: window.desc,
                 hours: window.hours,
-                type: currentScript
+                type: currentScript,
+                name: window.name
             }, {
                 headers: {
                     'accept': 'application/json',
