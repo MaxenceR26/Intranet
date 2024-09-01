@@ -37,7 +37,7 @@ $stmt->close();
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="page" content="Salles">
+    <meta name="page" content="Rdv-rEu">
     <link rel="stylesheet" href="../CSS/styles.css">
     <script src="https://kit.fontawesome.com/11b0336c50.js" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
@@ -174,9 +174,9 @@ $stmt->close();
     <!-- Navbar -->
     <div class="main">
         <div class="box-locations-page" style="color:red;">
-            <a href="rendezvous.php" id='rendezvous-page-calendar'><i class="fa-solid fa-calendar-days"></i></a>
-            <a href="voitures.php" id='voiture-page-calendar'><i class="fa-solid fa-car"></i></a>
-            <a href="salle.php"><i class="fa-solid fa-house"></i></a>
+            <a href="appointments.php" id='rendezvous-page-calendar'><i class="fa-solid fa-calendar-days"></i></a>
+            <a href="car_rental_schedule.php" id='voiture-page-calendar'><i class="fa-solid fa-car"></i></a>
+            <a href="room_schedule.php"><i class="fa-solid fa-house"></i></a>
         </div>
         <div id="calendar-page-calendar"></div>
         <div id="eventModal-page-calendar" class="modal-page-calendar">
