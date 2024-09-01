@@ -142,7 +142,7 @@ $stmt->close();
                 aria-labelledby="navbarDropdownMenuAvatar"
             >
                 <li>
-                <a class="dropdown-item" href="pages/parametre.php">Mes paramètres</a>
+                <a class="dropdown-item" href="pages/settings.php">Mes paramètres</a>
                 </li>
                 <li><a class="dropdown-item" href="pages/appointments.php">Locations</a></li>
                 <li><a class="dropdown-item" href="pages/myTickets.php">Mes Tickets</a></li>
@@ -328,7 +328,7 @@ $stmt->close();
     <script src="js/deconnexion.js"></script>
     <script src="js/nav.js"></script>
     <script src="js/slider.js"></script>
-    <script src="js/galerie.js"></script>
+    <script src="js/gallery.js"></script>
     <script src="js/updateNotifications.js"></script>
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/7.3.1/mdb.umd.min.js"></script>
     

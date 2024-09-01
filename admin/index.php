@@ -42,7 +42,7 @@ if (!isset($_SESSION['state'])) {
 
             ?>
             <li><a href="pages/newActualites.php">Ajouter une actualité</a></li>
-            <li><a href="pages/communes.php">Annuaire mairies</a></li>
+            <li><a href="pages/municipalities.php">Annuaire mairies</a></li>
             <li><a href="pages/services.php">Annuaire services</a></li>
             <?php
             if ($_SESSION["idroles"] == "3") {
@@ -123,6 +123,6 @@ if (!isset($_SESSION['state'])) {
         </div>
     </div>
 </body>
-<script src="js/tableau.js"></script>
+<script src="js/table.js"></script>
 
 </html>

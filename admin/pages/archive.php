@@ -63,7 +63,7 @@ session_start();
 
             ?>
             <li><a href="newActualites.php">Ajouter une actualité</a></li>
-            <li><a href="communes.php">Annuaire mairies</a></li>
+            <li><a href="municipalities.php">Annuaire mairies</a></li>
             <li><a href="services.php">Annuaire services</a></li>
             <?php
             if ($_SESSION["idroles"] == "3") {

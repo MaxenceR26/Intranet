@@ -106,7 +106,7 @@ $stmt->close();
                     </a>
                     <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdownMenuAvatar">
                     <li>
-                        <a class="dropdown-item" href="parametre.php">Mes paramètres</a>
+                        <a class="dropdown-item" href="settings.php">Mes paramètres</a>
                         </li>
                         <li>
                         <a class="dropdown-item" href="myTickets.php">Mes Tickets</a>

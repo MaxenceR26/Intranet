@@ -26,7 +26,7 @@ if ($_SESSION['state']) {
                 <input class="input" name="password" type="password" >
                 
                 <div class="conButton">
-                    <a href="inscription.php" id="submitInscription">Inscription</a>
+                    <a href="signup.php" id="submitInscription">Inscription</a>
                     <input type="submit" id="submit" value="Connexion">
                 </div>
                 

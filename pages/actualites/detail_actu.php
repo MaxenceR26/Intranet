@@ -185,7 +185,7 @@ $mysqli->close();
                 aria-labelledby="navbarDropdownMenuAvatar"
             >
                 <li>
-                <a class="dropdown-item" href="../../pages/parametre.php">Mes paramètres</a>
+                <a class="dropdown-item" href="../settings.php">Mes paramètres</a>
                 </li>
                 <li>
                 <a class="dropdown-item" href="../../pages/myTickets.php">Mes Tickets</a>
